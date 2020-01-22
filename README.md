@@ -28,7 +28,7 @@ Segments a .mp3 file into several smaller audio clips using an accompanying .srt
                             segments.
 
 ### Example
-Using the command:
+Using `srt-parse`:
 
     python3 srt-parse.py foo.mp3 foo.srt
 
