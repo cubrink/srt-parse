@@ -4,10 +4,13 @@ Segments a .mp3 file into several smaller audio clips using an accompanying .srt
 ### Usage
 
     usage: srt-parse [-h] [--output-dir OUTPUT_DIR]
-                     [--audio-out-file-pattern AUDIO_OUT_FILE_PATTERN]
-                     [--text-out-file-pattern TEXT_OUT_FILE_PATTERN]
-                     [--update-increment UPDATE_INCREMENT]
-                     audio_input srt_input
+                 [--audio-out-file-pattern AUDIO_OUT_FILE_PATTERN]
+                 [--text-out-file-pattern TEXT_OUT_FILE_PATTERN]
+                 [--output-type {txt,csv}] [--csv-seperator CSV_SEPERATOR]
+                 [--csv-filename CSV_FILENAME]
+                 [--update-increment UPDATE_INCREMENT]
+                 [--in-encoding IN_ENCODING] [--out-encoding OUT_ENCODING]
+                 audio_input srt_input
 
     Segment .mp3 files according to a provided .srt closed caption file
 
@@ -23,9 +26,20 @@ Segments a .mp3 file into several smaller audio clips using an accompanying .srt
                             A python-style f-string for saving audio files
       --text-out-file-pattern TEXT_OUT_FILE_PATTERN
                             A python-style f-string for saving text files
+      --output-type {txt,csv}
+                            Output filetype
+      --csv-seperator CSV_SEPERATOR
+                            Character sequence used to seperate values in csv
+      --csv-filename CSV_FILENAME
+                            Name of file to write as csv
       --update-increment UPDATE_INCREMENT
                             Print progress after every specified amount of
                             segments.
+      --in-encoding IN_ENCODING
+                            Encoding used to read the .srt file
+      --out-encoding OUT_ENCODING
+                            Encoding to use when writing text data to file
+
 
 ### Example
 Using `srt-parse`:
@@ -35,9 +49,10 @@ Using `srt-parse`:
 Will produce in the following files in the output directory (by default `.\out\`)
 
     0-audio.mp3
-    0-text.txt
     1-audio.mp3
-    1-text.txt
+    2-audio.mp3
+    3-audio.mp3
     ...
+    out.csv
     
-One of each file is made per subtitle in the .srt file.
+Each file is made per subtitle in the .srt file and out.csv groups each audio file to its transcript.
